@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ssh -p 40 -Y wdai11@argon.hpc.uiowa.edu
