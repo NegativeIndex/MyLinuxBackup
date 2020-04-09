@@ -1,18 +1,23 @@
 #!/usr/bin/env python
-import os
-import sys
+import os, re, sys
+from os import path
 import stat
 
-# def make_executable(path):
-#    mode = os.stat(path).st_mode
-#    mode |= (mode & 0444) >> 2    # copy R bits to X
-#    os.chmod(path, mode)
-
-# print 'Number of arguments:', len(sys.argv), 'arguments.'
 for fullname in sys.argv[1:]:
-    
+    if re.search('\.py$',fullname):
+        pass
+    else:
+        fullname+='.py'
+
+    if path.exists(fullname):
+        print("{} exists!".format(fullname))
+        continue
+    else:
+        print("{} will be created.".format(fullname))
+        
     with open(fullname,'w') as f:
         f.write('#!/usr/bin/env python\n\n')
-#    make_executable(fullname)
+
+    os.chmod(fullname,stat.S_IRWXU | stat.S_IRGRP | stat.S_IROTH)
 
 
