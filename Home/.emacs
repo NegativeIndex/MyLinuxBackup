@@ -115,7 +115,7 @@
 
 ;; Adds the Melpa archive to the list of available repositories
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 ;; Initializes the package infrastructure
 (package-initialize)
@@ -132,6 +132,7 @@
   '(better-defaults                 ;; Set up some better Emacs defaults
     rainbow-delimiters
     material-theme                  ;; Theme
+    markdown-mode    
     )
   )
 
@@ -163,9 +164,16 @@
 
 (add-hook 'python-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
+
+(autoload 'markdown-mode "markdown-mode"  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(autoload 'gfm-mode "markdown-mode"   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
 ;; Enable elpy
 ;; (elpy-enable)
-
 ; ===================================
 ;; end of MELPA Package Support
 ;; ===================================
