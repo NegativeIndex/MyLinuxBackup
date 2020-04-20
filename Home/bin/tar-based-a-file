@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# save the names of the foles we are interested to a file; 
+# then generate a tar ball based on the file
+
+# find files
+find [CE]* -name "*dat" > fname.txt
+
+# generate tar ball
+# tar -cvf data.tar -T fname.txt
+
+# remove the directory structures
+tar -cvf RawData.tar --transform=s'!^.*/!!' -T fname.txt
+
+
+
